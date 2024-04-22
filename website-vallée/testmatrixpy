@@ -1,0 +1,44 @@
+from turtle import *
+
+# Decode function
+def decode_pixels(encoded_string):
+    pixel_data = []
+    for pixel in encoded_string.split(";")[:-1]:
+        color_r, color_g, color_b, count = map(int, pixel.split(","))
+        pixel_data.extend([(color_r, color_g, color_b)] * count)
+    return pixel_data
+
+# Open and read encoded data from the file
+with open("encoded_image.txt", "r") as f:
+    encoded_data = f.read()
+
+# Decode the data
+decoded_pixels = decode_pixels(encoded_data)
+
+# Set up Turtle
+screen = Screen()
+screen.setup(800, 600)
+screen.tracer(0)
+
+t = Turtle()
+t.speed(0)
+t.penup()
+t.hideturtle()
+
+# Draw image using decoded pixels
+for y in range(600):
+    x = 0
+    while x < 800:
+        r, g, b = decoded_pixels.pop(0)
+        start_x = x
+        while decoded_pixels and decoded_pixels[0] == (r, g, b):
+            decoded_pixels.pop(0)
+            x += 1
+        t.color(r / 255, g / 255, b / 255)
+        t.penup()
+        t.goto(start_x - 400, 300 - y)
+        t.pendown()
+        t.goto(x - 400, 300 - y)
+    screen.update()
+
+screen.mainloop()
