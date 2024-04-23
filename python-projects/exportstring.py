@@ -1,8 +1,12 @@
 from PIL import Image
 
 # Open the image
-img = Image.open('tulipe.png')
-img = img.convert('RGB')
+try:
+    img = Image.open('tulipe.png')
+    img = img.convert('RGB')
+except IOError:
+    print("Error: Unable to load image.")
+    exit(1)
 
 # Get the dimensions of the image
 width, height = img.size
@@ -13,38 +17,37 @@ color_letters = {}
 # Counter for assigning letters
 letter_counter = ord('a')
 
+# Extract pixel data for faster processing
+pixels = list(img.getdata())
+
 # Iterate through each pixel in the image
-for x in range(width):
-    for y in range(height):
-        # Get the RGB values of the pixel
-        r, g, b = img.getpixel((x, y))
-        color = (r, g, b)
-        
-        # Check if the color is already assigned a letter
-        if color not in color_letters:
-            # Assign a new letter to the color
-            color_letters[color] = chr(letter_counter)
-            letter_counter += 1
+for pixel in pixels:
+    color = pixel
+    # Check if the color is already assigned a letter
+    if color not in color_letters:
+        # Assign a new letter to the color
+        color_letters[color] = chr(letter_counter)
+        letter_counter += 1
 
 # Create a string of letters representing colors in the image
 color_string = ''
-for y in range(height):
-    x = 0
-    while x < width:
-        color_count = 1
-        while x + color_count < width and img.getpixel((x + color_count, y)) == img.getpixel((x, y)):
-            color_count += 1
-        if color_count > 1:
-            color_string += str(color_count) + color_letters[img.getpixel((x, y))]
-            x += color_count
-        else:
-            color_string += color_letters[img.getpixel((x, y))]
-            x += 1
+idx = 0
+while idx < len(pixels):
+    color = pixels[idx]
+    color_count = 1
+    while idx + color_count < len(pixels) and pixels[idx + color_count] == color:
+        color_count += 1
+    if color_count > 1:
+        color_string += str(color_count) + color_letters[color]
+    else:
+        color_string += color_letters[color]
+    idx += color_count
 
 # Save the string of letters to a file
 with open('color_letters.txt', 'w') as file:
     file.write(color_string)
 
+# Output information
 print("Number of colors used in the image:", len(color_letters))
 print("Color letters mapping:", color_letters)
 print("String of letters representing colors saved to color_letters.txt")

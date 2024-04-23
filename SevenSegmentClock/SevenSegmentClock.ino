@@ -1,5 +1,5 @@
 #include <Wire.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 Servo secondsOnes;
 Servo secondsTens;
