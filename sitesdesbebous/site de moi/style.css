@@ -1,0 +1,53 @@
+h1 {
+    color: red;
+    transition: transform 0.5s;
+}
+
+
+img {
+    width: 25%;
+    border: 10px solid white;
+    border-radius: 20px;
+}
+body {
+    background-color: #ffad16;
+
+}
+img {
+    animation: shake 0.5s;
+  
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+
+  }
+  
+  @keyframes shake {
+
+    0% {
+        transform: rotate(0deg) scale(1);
+        filter: brightness(4) saturate(10) hue-rotate(45deg);
+    }
+    25% {
+        transform: rotate(90deg) scale(2);
+        filter: brightness(1.5) saturate(2) hue-rotate(45deg);
+    }
+    50% {
+        transform: rotate(180deg) scale(3);
+        filter: brightness(4) saturate(30) hue-rotate(45deg);
+    }
+    75% {
+        transform: rotate(270deg) scale(2);
+        filter: brightness(1.5) saturate(2) hue-rotate(45deg);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        filter: brightness(4) saturate(60) hue-rotate(45deg);
+    }
+    img {
+        position: relative;
+        left: calc(50% - 50px); /* Adjust the value as needed */
+        top: calc(50% - 50px); /* Adjust the value as needed */
+    }
+
+    
+  }
