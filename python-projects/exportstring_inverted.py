@@ -42,7 +42,7 @@ for y in range(height):
             x += 1
 
 # Save the string of letters to a file
-with open('color_letters.py', 'w') as file:
+with open('color_letters.txt', 'w') as file:
     file.write(f"def get_color_string():\n\treturn {color_string}")
 
 print("Number of colors used in the image:", len(color_letters))
