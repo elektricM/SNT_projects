@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Open the image
-img = Image.open('tulipe.png')
+img = Image.open('phryge.png')
 img = img.convert('RGB')
 
 # Get the dimensions of the image
