@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tetris</h1>
+    <div class="tetris-container">
+        <div class="grid">
+            <!-- 200 cells for the main grid -->
+            <!-- Repeat the following line 200 times -->
+            <div class="cell"></div>
+            <!-- ... -->
+        </div>
+        <div class="mini-grid">
+            <!-- 16 cells for the mini-grid -->
+            <!-- Repeat the following line 16 times -->
+            <div class="cell"></div>
+            <!-- ... -->
+        </div>
+    </div>
+    <div class="score-display">
+        <p>Score: <span id="score">0</span></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

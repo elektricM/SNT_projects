@@ -1,0 +1,54 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.tetris-container {
+    display: flex;
+}
+
+.grid {
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #333;
+}
+
+.grid .cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #444;
+    box-sizing: border-box;
+}
+
+.mini-grid {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #555;
+    margin-left: 20px;
+}
+
+.mini-grid .cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #666;
+    box-sizing: border-box;
+}
+
+.score-display {
+    margin-top: 20px;
+    text-align: center;
+}
